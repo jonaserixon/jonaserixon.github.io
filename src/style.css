@@ -9,7 +9,7 @@
 #projects-header {
   text-align: center;
   font-family: 'Kosugi', sans-serif;
-  font-size: 50px;
+  font-size: 7vh;
 }
 
 .Footer {
@@ -17,12 +17,5 @@
   color: grey;
   padding: 20px;
   background-color: white;
-}
-
-
-.Footer123 {
-  text-align: center;
-  color: rgb(0, 0, 0, 0.2);
-  padding: 20px;
-  background-color: white;
+  font-size: 2vh;
 }

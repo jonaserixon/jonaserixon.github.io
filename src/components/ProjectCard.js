@@ -6,10 +6,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import { EmailIcon, MusicIcon, GithubIcon, LocationIcon } from '../Icons';
+import { GithubIcon } from '../Icons';
 import Grid from '@material-ui/core/Grid';
-import {content} from '../content';
 
 const styles = theme => ({
     thumbnail: {
@@ -49,61 +47,38 @@ class ProjectCard extends Component {
     }
 
     render() {
-        const { classes } = this.props;
-        let projects = [];
-
-        for (let i in content) {
-            let project = content[i];
-            const keywords = project.keywords.map((keyword) => keyword + '. ');
-
-            projects.push(
-                <Grid key={i} item sm={4}>
-                    <Card key={i} className={classes.card}>
-                        <img src={project.thumbnail} className={classes.thumbnail}/>
-                        <CardContent>
-                            <Typography gutterBottom variant="headline" component="h2" className={classes.typographyHeadline}>{project.title}</Typography>
-                            <br />
-                            <Typography component="p">{project.description}</Typography>
-                            <br />
-                            <Typography component="p" className={classes.typography} >{keywords}</Typography>
-                        </CardContent>
-                        <CardActions>
-                            <a href={project.github} className={classes.projectLinks} >
+        const { classes, demoLink, hasDemo, description, github, keywords, thumbnail, title } = this.props;
+        return (
+            <Grid item sm={4}>
+                <Card className={classes.card}>
+                    <img src={thumbnail} className={classes.thumbnail}/>
+                    <CardContent>
+                        <Typography gutterBottom variant="headline" component="h2" className={classes.typographyHeadline}>{title}</Typography>
+                        <br />
+                        <Typography component="p">{description}</Typography>
+                        <br />
+                        <Typography component="p" className={classes.typography} >{keywords}</Typography>
+                    </CardContent>
+                    <CardActions>
+                        <a href={github} className={classes.projectLinks} >
+                            <Button size="small">
+                                <GithubIcon />
+                                Github
+                            </Button>
+                        </a>
+                        {hasDemo ? 
+                            (<a href={demoLink} className={classes.projectLinks} >
                                 <Button size="small">
                                     <GithubIcon />
-                                    Github
+                                    Live Demo
                                 </Button>
-                            </a>
-                            {project.hasDemo ? 
-                                <a href={project.demoLink} className={classes.projectLinks} >
-                                    <Button size="small">
-                                        <GithubIcon />
-                                        Live Demo
-                                    </Button>
-                                </a>
-                                :
-                                null
-                            }
-                        </CardActions>
-                    </Card>
-                </Grid>
-            )
-        }
-
-        return (
-            <div>
-                <Grid 
-                    container={true}
-                    style={{
-                        margin: 0,
-                        width: '100%',
-                    }} 
-                    spacing={40}
-                >
-
-                    {projects}
-                </Grid>
-            </div>
+                            </a>)
+                            :
+                            null
+                        }
+                    </CardActions>
+                </Card>
+            </Grid>
         );
     };
 }

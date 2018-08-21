@@ -1,23 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import { EmailIcon, MusicIcon, GithubIcon, LocationIcon } from '../Icons';
 import ProjectCard from './ProjectCard';
-
-const styles = {
-    center: {
-        textAlign: 'center'
-    },
-    headerCenter: {
-        textAlign: 'center',
-    }
-};
+import {content} from '../content';
+import Grid from '@material-ui/core/Grid';
 
 class Projects extends Component {
     constructor(props) {
@@ -25,17 +9,42 @@ class Projects extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        let projects = [];
+
+        for (let i in content) {
+            let project = content[i];
+            const keywords = project.keywords.map((keyword) => keyword + '. ');
+
+            projects.push(
+                <ProjectCard 
+                    demoLink={project.demoLink} 
+                    hasDemo={project.hasDemo} 
+                    description={project.description} 
+                    github={project.github} 
+                    keywords={keywords} 
+                    thumbnail={project.thumbnail} 
+                    title={project.title} 
+                />
+            );
+        }
+
+
         return (
             <div className="Projects">
-                <ProjectCard />
+            <Grid 
+                    container={true}
+                    style={{
+                        margin: 0,
+                        width: '100%',
+                    }} 
+                    spacing={40}
+                >
+
+                    {projects}
+                </Grid>
             </div>
         );
     };
 }
 
-Projects.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Projects);
+export default Projects;
