@@ -6,7 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { GithubIcon } from '../Icons';
+import { GithubIcon, LinkIcon } from '../Icons';
 import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
@@ -16,12 +16,14 @@ const styles = theme => ({
         margin: '0 auto',
     },
     button: {
-        textTransform: 'none'
+        // textTransform: 'none',
+        // position: 'relative',
+        // width: '100px'
     },
     card: {
         textAlign: 'center',
         marginTop: '2vw',
-        height: '490px',
+        minHeight: '30vw',
         position: 'relative',
     },
     media: {
@@ -31,13 +33,16 @@ const styles = theme => ({
     typography: {
         color: 'gray'
     },
+    typographyDescription: {
+        fontSize: '13px'
+    },
     keywords: {
-        float: 'left',
-        color: 'gray'
+        color: 'gray',
+        fontSize: '13px'
     },
     projectLinks: {
         textDecoration: 'none',
-        color: 'solid black',
+        color: 'solid black'
     }
 });
 
@@ -55,22 +60,21 @@ class ProjectCard extends Component {
                     <CardContent>
                         <Typography gutterBottom variant="headline" component="h2" className={classes.typographyHeadline}>{title}</Typography>
                         <br />
-                        <Typography component="p">{description}</Typography>
+                        <Typography component="p" className={classes.typographyDescription}>{description}</Typography>
                         <br />
-                        <Typography component="p" className={classes.typography} >{keywords}</Typography>
+                        <Typography component="p" className={classes.keywords} >{keywords}</Typography>
                     </CardContent>
                     <CardActions>
                         <a href={github} className={classes.projectLinks} >
-                            <Button size="small">
-                                <GithubIcon />
-                                Github
+                            <Button size="small" color="primary" variant="contained" className={classes.button}>
+                                {/* <GithubIcon /> */}
+                                GITHUB
                             </Button>
                         </a>
                         {hasDemo ? 
                             (<a href={demoLink} className={classes.projectLinks} >
-                                <Button size="small">
-                                    <GithubIcon />
-                                    Live Demo
+                                <Button size="small" color="secondary" variant="contained" className={classes.button}>
+                                    LIVE DEMO
                                 </Button>
                             </a>)
                             :
