@@ -4,9 +4,6 @@ import {content} from '../content';
 import Grid from '@material-ui/core/Grid';
 
 class Projects extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         let projects = [];
@@ -16,14 +13,17 @@ class Projects extends Component {
             const keywords = project.keywords.map((keyword) => keyword + '. ');
 
             projects.push(
-                <ProjectCard 
+                <ProjectCard
+                    onClick={this.handleOpen}
+                    key={i}
                     demoLink={project.demoLink} 
                     hasDemo={project.hasDemo} 
                     description={project.description} 
                     github={project.github} 
                     keywords={keywords} 
                     thumbnail={project.thumbnail} 
-                    title={project.title} 
+                    title={project.title}
+                    video={project.video}
                 />
             );
         }
@@ -39,6 +39,8 @@ class Projects extends Component {
                     }} 
                     spacing={40}
                 >
+
+                    
 
                     {projects}
                 </Grid>

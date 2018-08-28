@@ -6,8 +6,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { GithubIcon, LinkIcon } from '../Icons';
 import Grid from '@material-ui/core/Grid';
+import ProjectModal from './ProjectModal';
 
 const styles = theme => ({
     thumbnail: {
@@ -47,16 +47,26 @@ const styles = theme => ({
 });
 
 class ProjectCard extends Component {
-    constructor(props) {
-        super(props);
-    }
+    state = {
+        isOpen: false,
+    };
+  
+    handleOpen = () => {
+        this.setState({ isOpen: true });
+        console.log('hej')
+    };
+  
+    handleClose = () => {
+        this.setState({ isOpen: false });
+    };
 
     render() {
         const { classes, demoLink, hasDemo, description, github, keywords, thumbnail, title } = this.props;
         return (
             <Grid item sm={4}>
-                <Card className={classes.card}>
-                    <img src={thumbnail} className={classes.thumbnail}/>
+            <ProjectModal isOpen={this.state.isOpen} handleClose={this.handleClose} project={this.props} />
+                <Card className={classes.card} onClick={this.handleOpen} >
+                    <img src={thumbnail} className={classes.thumbnail} alt='project'/>
                     <CardContent>
                         <Typography gutterBottom variant="headline" component="h2" className={classes.typographyHeadline}>{title}</Typography>
                         <br />
@@ -67,7 +77,6 @@ class ProjectCard extends Component {
                     <CardActions>
                         <a href={github} className={classes.projectLinks} >
                             <Button size="small" color="primary" variant="contained" className={classes.button}>
-                                {/* <GithubIcon /> */}
                                 GITHUB
                             </Button>
                         </a>

@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import { EmailIcon, MusicIcon, GithubIcon, LocationIcon, LinkedInIcon } from '../Icons';
 import '../style.css';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 
@@ -38,9 +37,6 @@ const styles = theme => ({
 });
 
 class ProfileCard extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const { classes } = this.props;

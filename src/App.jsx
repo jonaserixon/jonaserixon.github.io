@@ -13,9 +13,7 @@ const styles = {
 };
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
+    
     render() {
         const { classes } = this.props;
         return (
