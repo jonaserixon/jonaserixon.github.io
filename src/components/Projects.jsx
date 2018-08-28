@@ -18,7 +18,8 @@ class Projects extends Component {
                     key={i}
                     demoLink={project.demoLink} 
                     hasDemo={project.hasDemo} 
-                    description={project.description} 
+                    shortDescription={project.shortDescription} 
+                    fullDescription={project.fullDescription}
                     github={project.github} 
                     keywords={keywords} 
                     thumbnail={project.thumbnail} 

@@ -16,9 +16,6 @@ const styles = theme => ({
         margin: '0 auto',
     },
     button: {
-        // textTransform: 'none',
-        // position: 'relative',
-        // width: '100px'
     },
     card: {
         textAlign: 'center',
@@ -35,6 +32,9 @@ const styles = theme => ({
     },
     typographyDescription: {
         fontSize: '13px'
+    },
+    typographyHeadline: {
+        cursor: 'pointer'
     },
     keywords: {
         color: 'gray',
@@ -53,7 +53,6 @@ class ProjectCard extends Component {
   
     handleOpen = () => {
         this.setState({ isOpen: true });
-        console.log('hej')
     };
   
     handleClose = () => {
@@ -61,16 +60,17 @@ class ProjectCard extends Component {
     };
 
     render() {
-        const { classes, demoLink, hasDemo, description, github, keywords, thumbnail, title } = this.props;
+        const { classes, demoLink, hasDemo, shortDescription, fullDescription, github, keywords, thumbnail, title } = this.props;
         return (
+
             <Grid item sm={4}>
-            <ProjectModal isOpen={this.state.isOpen} handleClose={this.handleClose} project={this.props} />
-                <Card className={classes.card} onClick={this.handleOpen} >
-                    <img src={thumbnail} className={classes.thumbnail} alt='project'/>
+            <ProjectModal isOpen={this.state.isOpen} handleClose={this.handleClose} project={this.props} /> 
+                <Card className={classes.card}  >
+                    <img src={thumbnail} className={classes.thumbnail} id='project-image' alt='Project Thumbnail' onClick={this.handleOpen} style={{cursor: 'pointer'}}/>
                     <CardContent>
-                        <Typography gutterBottom variant="headline" component="h2" className={classes.typographyHeadline}>{title}</Typography>
+                        <Typography gutterBottom variant="headline" component="h2" className={classes.typographyHeadline} onClick={this.handleOpen}>{title}</Typography>
                         <br />
-                        <Typography component="p" className={classes.typographyDescription}>{description}</Typography>
+                        <Typography component="p" className={classes.typographyDescription}>{shortDescription}</Typography>
                         <br />
                         <Typography component="p" className={classes.keywords} >{keywords}</Typography>
                     </CardContent>

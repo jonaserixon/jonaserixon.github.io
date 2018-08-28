@@ -21,7 +21,7 @@ class App extends Component {
                 <ProfileCard />
                 <h1 className={classes.center}> - </h1>
                 <h1 id={'projects-header'}>Web Dev Projects</h1>
-                <Projects />
+                <Projects/>
                 <Footer />
             </div>
         );
